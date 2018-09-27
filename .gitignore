@@ -3,5 +3,4 @@
 *.log
 */target/
 */generatorConfig.xml
-abc.txt
 *.class
