@@ -3,5 +3,5 @@
 *.log
 */target/
 */generatorConfig.xml
-*/mybatis-generator-config.xml
+*/abc.txt
 *.class
