@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+  <!-- 控制台输出 -->
+  <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder><pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern></encoder>
+  </appender>
+  <appender name="firstproject" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>/export/Logs/first-project/firstproject.log</file>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>/export/Logs/first-project/firstproject.log.%d{yyyy-MM-dd}</fileNamePattern>
+      <maxHistory>7</maxHistory>
+    </rollingPolicy>
+    <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+      <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
+    </encoder>
+  </appender>
+
+  <!-- service -->
+  <appender name="firstproject_service" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>/export/Logs/first-project/firstproject_service.log</file>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>/export/Logs/first-project/firstproject_service.log.%d{yyyy-MM-dd}</fileNamePattern>
+      <maxHistory>7</maxHistory>
+    </rollingPolicy>
+    <encoder>
+      <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
+    </encoder>
+  </appender>
+  <logger name="com.firstproject.service" additivity="true" level="INFO">
+    <appender-ref ref="firstproject_service" />
+  </logger>
+
+  <!-- manager -->
+  <appender name="firstproject_manager" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>/export/Logs/first-project/firstproject_manager.log</file>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>/export/Logs/first-project/firstproject_manager.log.%d{yyyy-MM-dd}</fileNamePattern>
+      <maxHistory>7</maxHistory>
+    </rollingPolicy>
+    <encoder>
+      <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
+    </encoder>
+  </appender>
+  <logger name="com.firstproject.manager" additivity="true" level="INFO">
+    <appender-ref ref="firstproject_manager" />
+  </logger>
+
+  <root level="info">
+    <appender-ref ref="stdout" />
+    <!-- 视情况可要可不要 -->
+    <appender-ref ref="firstproject" />
+  </root>
+
+</configuration>

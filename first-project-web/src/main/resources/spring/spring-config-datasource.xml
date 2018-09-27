@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+  <!-- C3P0数据源,注意核对数据库名 -->
+  <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+        destroy-method="close"
+        p:driverClass="${mysql.jdbc.driver.master}"
+        p:jdbcUrl="${mysql.jdbc.url.master}"
+        p:user="${mysql.jdbc.username.master}"
+        p:password="${mysql.jdbc.password.master}"
+        p:maxPoolSize="20"
+        p:minPoolSize="1"
+        p:initialPoolSize="1"/>
+</beans>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/util
+    http://www.springframework.org/schema/util/spring-util.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd
+    http://www.springframework.org/schema/mvc
+    http://www.springframework.org/schema/mvc/spring-mvc.xsd
+    http://www.springframework.org/schema/aop
+    http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!-- 不扫描Controller -->
+    <context:component-scan base-package="com.firstproject">
+      <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+
+    <!-- 启动@AspectJ支持,是否强制使用CGLIB代理：proxy-target-class为true即可 -->
+    <!-- proxy-target-class默认为false，用法见com.annotation.JAnnotation的getMethod方法 -->
+    <aop:aspectj-autoproxy proxy-target-class="false"/>
+    <!-- 该注解主要用于激活Bean上的注解，注意必须已注册为Bean，该配置可被component-scan取代 -->
+    <context:annotation-config/>
+    <!-- 激活监控注解AOP -->
+    <bean class="com.firstproject.common.annotation.JAnnotation">
+      <property name="appName" value="firstproject"/>
+    </bean>
+
+    <mvc:annotation-driven/>
+
+    <!--加载配置文件-->
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:conf/important.properties</value>
+                <value>classpath:conf/service.properties</value>
+                <value>classpath:${config}.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <!--引入Spring配置文件-->
+    <import resource="spring-config-dao.xml"/>
+    <import resource="spring-config-bean.xml"/>
+
+    <!-- 配置List和Map类型的Bean -->
+    <util:list id="listbeanID">
+      <value>admin</value>
+      <value>用药指导</value>
+      <value>用药提醒</value>
+    </util:list>
+    <util:map id="mapBeanID">
+      <entry key="ik" value="mmp"/>
+      <entry key="ik1" value="mmp"/>
+    </util:map>
+
+    <!--<bean id="modelJob" class="com.util.QuartzJob"/>-->
+    <!--<bean id="jobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">-->
+      <!--<property name="targetObject">-->
+        <!--<ref bean="modelJob"/>-->
+      <!--</property>-->
+      <!--<property name="targetMethod">-->
+        <!--<value>execute</value>-->
+      <!--</property>-->
+    <!--</bean>-->
+    <!--<bean id="jobTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">-->
+      <!--<property name="jobDetail" ref="jobDetail"/>-->
+      <!--&lt;!&ndash; 可以用在线cron表达式生成器 &ndash;&gt;-->
+      <!--<property name="cronExpression" value="0/8 * * * * ?"/>-->
+    <!--</bean>-->
+    <!--<bean id="schedulerFactory" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">-->
+      <!--<property name="triggers">-->
+        <!--<list>-->
+          <!--<ref bean="jobTrigger"/>-->
+        <!--</list>-->
+      <!--</property>-->
+    <!--</bean>-->
+
+</beans>

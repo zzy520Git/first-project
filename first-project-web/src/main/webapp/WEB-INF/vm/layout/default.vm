@@ -1,0 +1,8 @@
+<!DOCTYPE html>
+<html>
+    #include("common/head.vm")
+<body>
+    $screen_content
+<h1>default.vm默认模板在这里。！</h1>
+</body>
+</html>

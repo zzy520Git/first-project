@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <parent>
+    <artifactId>parent</artifactId>
+    <groupId>com.jd.first-project</groupId>
+    <version>1.0-SNAPSHOT</version>
+  </parent>
+  <modelVersion>4.0.0</modelVersion>
+
+  <artifactId>first-project-web</artifactId>
+  <packaging>war</packaging>
+  <name>${project.artifactId}</name>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.jd.first-project</groupId>
+      <artifactId>first-project-service</artifactId>
+      <version>1.0-SNAPSHOT</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <!-- 使用pom文件中的profile需要这个语句配置 -->
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+        <!-- filtering属性用来表示资源文件中的占位符是否需要被替换，true为需要替换 -->
+        <filtering>true</filtering>
+      </resource>
+    </resources>
+  </build>
+</project>
