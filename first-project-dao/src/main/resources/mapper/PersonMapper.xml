@@ -24,7 +24,8 @@
     delete from person
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.firstproject.domain.bean.Person">
+  <!-- 配置useGeneratedKeys和keyProperty返回自增主键 -->
+  <insert id="insert" parameterType="com.firstproject.domain.bean.Person" useGeneratedKeys="true" keyProperty="id">
     insert into person (id, age, addr, 
       upc, name, birthday, 
       status, yn)
@@ -32,7 +33,9 @@
       #{upc,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{birthday,jdbcType=TIMESTAMP}, 
       #{status,jdbcType=INTEGER}, #{yn,jdbcType=BIT})
   </insert>
-  <insert id="insertSelective" parameterType="com.firstproject.domain.bean.Person">
+  <!-- 配置useGeneratedKeys和keyProperty返回自增主键 -->
+  <insert id="insertSelective" parameterType="com.firstproject.domain.bean.Person"
+          useGeneratedKeys="true" keyProperty="id">
     insert into person
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">

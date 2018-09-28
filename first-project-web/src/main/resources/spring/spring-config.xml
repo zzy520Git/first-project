@@ -15,6 +15,7 @@
 
     <!-- 不扫描Controller -->
     <context:component-scan base-package="com.firstproject">
+      <context:include-filter type="annotation" expression="org.aspectj.lang.annotation.Aspect"/>
       <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
 
@@ -23,10 +24,13 @@
     <aop:aspectj-autoproxy proxy-target-class="false"/>
     <!-- 该注解主要用于激活Bean上的注解，注意必须已注册为Bean，该配置可被component-scan取代 -->
     <context:annotation-config/>
-    <!-- 激活监控注解AOP -->
+
+    <!-- 激活监控注解AOP
+    当include-filter包含Aspect时可以省略
     <bean class="com.firstproject.common.annotation.JAnnotation">
       <property name="appName" value="firstproject"/>
     </bean>
+    -->
 
     <mvc:annotation-driven/>
 
