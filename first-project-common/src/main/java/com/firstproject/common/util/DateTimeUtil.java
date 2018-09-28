@@ -3,6 +3,8 @@ package com.firstproject.common.util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -53,4 +55,46 @@ public class DateTimeUtil {
         return null ;
     }
 
+    public static void main(String[] args) {
+        long start = System.currentTimeMillis() ;
+        for(int i=0 ; i<10000 ; i++) {
+            str2Date("1993-05-20","yyyy-MM-dd") ;
+            date2Str(new Date(), "yyyy-MM-dd") ;
+        }
+        long end = System.currentTimeMillis() ;
+        System.out.println(end-start);
+
+        start = System.currentTimeMillis() ;
+        for(int i=0 ; i<10000 ; i++) {
+            t1("1993-05-20","yyyy-MM-dd") ;
+            t2(new Date(), "yyyy-MM-dd") ;
+        }
+        end = System.currentTimeMillis() ;
+        System.out.println(end-start);
+
+    }
+
+    public static Date t1(String d, String pattern){
+        try {
+            return new SimpleDateFormat(pattern).parse(d) ;
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return null ;
+    }
+    public static String t2(Date d, String pattern){
+        return new SimpleDateFormat(pattern).format(d) ;
+    }
+
 }
+
+
+
+
+
+
+
+
+
+
+
