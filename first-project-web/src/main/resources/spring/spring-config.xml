@@ -4,11 +4,8 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
        xmlns:aop="http://www.springframework.org/schema/aop"
-       xmlns:util="http://www.springframework.org/schema/util"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans.xsd
-    http://www.springframework.org/schema/util
-    http://www.springframework.org/schema/util/spring-util.xsd
     http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context.xsd
     http://www.springframework.org/schema/mvc
@@ -47,38 +44,6 @@
     <!--引入Spring配置文件-->
     <import resource="spring-config-dao.xml"/>
     <import resource="spring-config-bean.xml"/>
-
-    <!-- 配置List和Map类型的Bean -->
-    <util:list id="listbeanID">
-      <value>admin</value>
-      <value>用药指导</value>
-      <value>用药提醒</value>
-    </util:list>
-    <util:map id="mapBeanID">
-      <entry key="ik" value="mmp"/>
-      <entry key="ik1" value="mmp"/>
-    </util:map>
-
-    <!--<bean id="modelJob" class="com.util.QuartzJob"/>-->
-    <!--<bean id="jobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">-->
-      <!--<property name="targetObject">-->
-        <!--<ref bean="modelJob"/>-->
-      <!--</property>-->
-      <!--<property name="targetMethod">-->
-        <!--<value>execute</value>-->
-      <!--</property>-->
-    <!--</bean>-->
-    <!--<bean id="jobTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">-->
-      <!--<property name="jobDetail" ref="jobDetail"/>-->
-      <!--&lt;!&ndash; 可以用在线cron表达式生成器 &ndash;&gt;-->
-      <!--<property name="cronExpression" value="0/8 * * * * ?"/>-->
-    <!--</bean>-->
-    <!--<bean id="schedulerFactory" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">-->
-      <!--<property name="triggers">-->
-        <!--<list>-->
-          <!--<ref bean="jobTrigger"/>-->
-        <!--</list>-->
-      <!--</property>-->
-    <!--</bean>-->
+    <import resource="spring-config-worker.xml"/>
 
 </beans>

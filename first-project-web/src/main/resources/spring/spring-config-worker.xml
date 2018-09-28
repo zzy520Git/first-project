@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="doWork1Detail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+      <property name="targetObject">
+        <ref bean="testWorker"/>
+      </property>
+      <property name="targetMethod">
+        <value>doWork1</value>
+      </property>
+    </bean>
+    <bean id="doWork2Detail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+      <property name="targetObject">
+        <ref bean="testWorker"/>
+      </property>
+      <property name="targetMethod">
+        <value>doWork2</value>
+      </property>
+    </bean>
+    <bean id="jobTrigger1" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+      <property name="jobDetail" ref="doWork1Detail"/>
+      <!-- 可以用在线cron表达式生成器 -->
+      <property name="cronExpression" value="0/8 * * * * ?"/>
+    </bean>
+    <bean id="jobTrigger2" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+      <property name="jobDetail" ref="doWork2Detail"/>
+      <!-- 可以用在线cron表达式生成器 -->
+      <property name="cronExpression" value="0/8 * * * * ?"/>
+    </bean>
+    <!--<bean id="schedulerFactory" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">-->
+      <!--<property name="triggers">-->
+        <!--<list>-->
+          <!--<ref bean="jobTrigger1"/>-->
+        <!--</list>-->
+      <!--</property>-->
+    <!--</bean>-->
+
+</beans>
