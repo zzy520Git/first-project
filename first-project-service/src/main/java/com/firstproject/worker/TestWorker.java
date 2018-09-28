@@ -15,15 +15,15 @@ public class TestWorker {
     private static final Logger LOGGER = LoggerFactory.getLogger(TestWorker.class) ;
     //必须public
     public void doWork1() {
-        LOGGER.warn("测试doWork1");
+        LOGGER.warn("测试doWork1：时间戳={}ms", System.currentTimeMillis());
     }
 
     //必须public
     public void doWork2() {
-        LOGGER.warn("测试doWork2");
+        LOGGER.warn("测试doWork2：时间戳={}ms", System.currentTimeMillis());
     }
 
     public void doWork3() {
-        LOGGER.warn("task-schedule测试doWork3");
+        LOGGER.warn("task-schedule测试doWork3：时间戳={}ms", System.currentTimeMillis());
     }
 }

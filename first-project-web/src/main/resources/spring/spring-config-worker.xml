@@ -1,41 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:task="http://www.springframework.org/schema/task"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-    http://www.springframework.org/schema/beans/spring-beans.xsd">
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/task
+    http://www.springframework.org/schema/task/spring-task.xsd">
 
     <bean id="doWork1Detail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
-      <property name="targetObject">
-        <ref bean="testWorker"/>
-      </property>
-      <property name="targetMethod">
-        <value>doWork1</value>
-      </property>
+      <property name="targetObject" ref="testWorker"/>
+      <property name="targetMethod" value="doWork1"/>
+      <!--
+      其中concurrent属性标识的解释为：对于相同的JobDetail，当指定多个Trigger时,
+      很可能第一个job完成之前，第二个job就开始了。指定concurrent设为false，
+      多个job不会并发运行，
+      -->
+      <property name="concurrent" value="false"/>
     </bean>
     <bean id="doWork2Detail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
-      <property name="targetObject">
-        <ref bean="testWorker"/>
-      </property>
-      <property name="targetMethod">
-        <value>doWork2</value>
-      </property>
+      <property name="targetObject" ref="testWorker"/>
+      <property name="targetMethod" value="doWork2"/>
+      <property name="concurrent" value="false"/>
     </bean>
     <bean id="jobTrigger1" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
       <property name="jobDetail" ref="doWork1Detail"/>
       <!-- 可以用在线cron表达式生成器 -->
-      <property name="cronExpression" value="0/8 * * * * ?"/>
+      <property name="cronExpression" value="0/10 * * * * ?"/>
     </bean>
     <bean id="jobTrigger2" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
       <property name="jobDetail" ref="doWork2Detail"/>
-      <!-- 可以用在线cron表达式生成器 -->
-      <property name="cronExpression" value="0/8 * * * * ?"/>
+      <property name="cronExpression" value="0/10 * * * * ?"/>
     </bean>
-    <!--<bean id="schedulerFactory" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">-->
-      <!--<property name="triggers">-->
-        <!--<list>-->
-          <!--<ref bean="jobTrigger1"/>-->
-        <!--</list>-->
-      <!--</property>-->
-    <!--</bean>-->
+    <bean id="schedulerFactory" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+      <property name="triggers">
+        <list>
+          <ref bean="jobTrigger1"/>
+          <ref bean="jobTrigger2"/>
+        </list>
+      </property>
+      <!-- 是否开启定时任务 -->
+      <property name="autoStartup" value="false"/>
+      <property name="startupDelay" value="8" />
+      <property name="quartzProperties">
+        <props>
+          <prop key="org.quartz.threadPool.threadCount">2</prop>
+        </props>
+      </property>
+    </bean>
+
+    <!-- spring自带的定时任务，不依赖第三方框架,缺点是不能控制默认不开启 -->
+    <task:scheduled-tasks scheduler="myScheduler">
+      <task:scheduled ref="testWorker" method="doWork3" cron="0/60 * * * * ?"/>
+    </task:scheduled-tasks>
+    <!-- pool-size线程池大小 -->
+    <task:scheduler id="myScheduler" pool-size="2"/>
+
+    <!-- 支持注解定时任务
+    <task:annotation-driven executor="threadPoolTaskExecutor" scheduler="myScheduler"/>
+    <task:executor id="threadPoolTaskExecutor" pool-size="1" keep-alive="60"
+                   queue-capacity="10" rejection-policy="ABORT"/>
+    -->
 
 </beans>
