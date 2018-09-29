@@ -36,15 +36,26 @@ public class DateTimeUtil {
         }
         return null ;
     }
+
+    /**
+     *
+     * @param dateTimeStr 必须都要包含日期和时间，否则异常
+     * @param pattern 日期字符串模式
+     * @return
+     */
+    @Deprecated
     public static Date str2Date(String dateTimeStr, String pattern) {
         try {
+            //该方法少用，极易出错
             LocalDateTime temp =  LocalDateTime.parse(dateTimeStr, DateTimeFormatter.ofPattern(pattern)) ;
+            LOGGER.warn("DateTimeUtil.str2Date方法调用，dateTimeStr={},pattern={}", dateTimeStr, pattern);
             return DateTimeUtil.localDateTime2Date(temp) ;
         } catch (Exception e) {
-            LOGGER.error("DateTimeUtil.str2Date方法异常，dateTimeStr={},pattern={}", dateTimeStr, pattern, e);
+            LOGGER.error("DateTimeUtil.str2Date方法异常，dateTimeStr={},pattern={}", dateTimeStr, pattern);
         }
         return null ;
     }
+    @Deprecated
     public static String date2Str(Date date, String pattern) {
         try {
             LocalDateTime temp =  DateTimeUtil.date2LocalDateTime(date) ;
@@ -56,34 +67,39 @@ public class DateTimeUtil {
     }
 
     public static void main(String[] args) {
+        /**
+         * 实验证明，效率较低
+         */
         long start = System.currentTimeMillis() ;
-        for(int i=0 ; i<10000 ; i++) {
-            str2Date("1993-05-20","yyyy-MM-dd") ;
-            date2Str(new Date(), "yyyy-MM-dd") ;
-        }
+        System.out.println(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
         long end = System.currentTimeMillis() ;
         System.out.println(end-start);
 
+        /**
+         * 实验证明，效率更高
+         */
         start = System.currentTimeMillis() ;
-        for(int i=0 ; i<10000 ; i++) {
-            t1("1993-05-20","yyyy-MM-dd") ;
-            t2(new Date(), "yyyy-MM-dd") ;
-        }
+        System.out.println(dateToStr(new Date(), "yyyy-MM-dd"));
         end = System.currentTimeMillis() ;
         System.out.println(end-start);
 
     }
 
-    public static Date t1(String d, String pattern){
+    public static Date strToDate(String d, String pattern){
         try {
             return new SimpleDateFormat(pattern).parse(d) ;
         } catch (ParseException e) {
-            e.printStackTrace();
+            LOGGER.error("DateTimeUtil.strToDate方法异常，d={},pattern={}", d, pattern, e);
         }
         return null ;
     }
-    public static String t2(Date d, String pattern){
-        return new SimpleDateFormat(pattern).format(d) ;
+    public static String dateToStr(Date date, String pattern){
+        try {
+            return new SimpleDateFormat(pattern).format(date) ;
+        } catch (Exception e) {
+            LOGGER.error("DateTimeUtil.dateToStr方法异常，date={},pattern={}", date, pattern, e);
+        }
+        return null ;
     }
 
 }
