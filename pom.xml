@@ -160,6 +160,11 @@
       <artifactId>commons-lang3</artifactId>
       <version>${commons-lang3.version}</version>
     </dependency>
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-collections4</artifactId>
+      <version>4.1</version>
+    </dependency>
 
     <!-- lombok -->
     <dependency>
@@ -212,6 +217,11 @@
     <!--
     UMP+JSF+JMQ+JIM+IMAGE+XSS+quartz+<httpclient>
     -->
+    <dependency>
+      <groupId>org.apache.httpcomponents</groupId>
+      <artifactId>httpclient</artifactId>
+      <version>4.5.2</version>
+    </dependency>
 
     <!-- 单元测试 -->
     <dependency>
