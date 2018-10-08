@@ -227,6 +227,11 @@
       <artifactId>httpclient</artifactId>
       <version>4.5.2</version>
     </dependency>
+    <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+      <version>25.1-jre</version>
+    </dependency>
 
     <!-- 单元测试 -->
     <dependency>
