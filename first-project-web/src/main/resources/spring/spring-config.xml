@@ -43,6 +43,7 @@
                 <value>classpath:${config}.properties</value>
             </list>
         </property>
+        <property name="fileEncoding" value="UTF-8"/>
     </bean>
 
     <!--引入Spring配置文件-->

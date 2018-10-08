@@ -18,14 +18,17 @@ public class StreamT {
         List<Dog> dogs = Stream.of(new Dog("小白"), new Dog("皮蛋"),
                 new Dog("轮胎")).collect(Collectors.toList());
         //List<Dog> dogs = new ArrayList<>(0) ;
-        dogs.add(new Dog("abc")) ;
-        dogs.forEach(e->System.out.println(e.getName()));
-        List<String> names = dogs.stream().map(Dog::getName).collect(Collectors.toList());
-        names.forEach(System.out::println);
-
-        StreamT st = new StreamT() ;
-        st.test();
-        st.flatMap();
+//        dogs.add(new Dog("abc")) ;
+//        dogs.forEach(e->System.out.println(e.getName()));
+//        List<String> names = dogs.stream().map(Dog::getName).collect(Collectors.toList());
+//        names.forEach(System.out::println);
+//
+//        StreamT st = new StreamT() ;
+//        st.test();
+//        st.flatMap();
+        dogs.parallelStream().forEach(e->{
+            System.out.println(e.getName()) ;
+        });
     }
 
     public void test() {
