@@ -1,4 +1,4 @@
-package com.firstproject.domain.sso;
+package com.firstproject.common.util.sso;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -17,6 +17,7 @@ public class LoginContext {
     private String username ;
     private String email ;
     private String mobile ;
+    private String secret ;
 
     public static void setLoginContext(LoginContext loginContext) {
         holder.set(loginContext);

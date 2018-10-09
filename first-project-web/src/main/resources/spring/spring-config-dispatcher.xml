@@ -65,14 +65,6 @@
       <property name="maxUploadSize" value="400000000"/>
   </bean>
 
-  <bean id="ssoHelper" class="com.firstproject.domain.sso.SSOHelper">
-    <!-- 配置/代表不拦截任何请求 -->
-    <property name="excludePath" value="/js,/css"/>
-    <property name="cacheSize" value="5"/>
-    <property name="ssoEnabled" value="false"/>
-    <!-- 还有其他字段属性可设置 -->
-  </bean>
-
   <!-- 拦截器 -->
   <mvc:interceptors>
     <!--多个拦截器,顺序执行 -->
@@ -99,8 +91,11 @@
       <mvc:exclude-mapping path="/assets/**"/>
       <mvc:exclude-mapping path="/css/**"/>
       <mvc:exclude-mapping path="/js/**"/>
-      <bean class="com.firstproject.domain.sso.SSOInterceptor">
-        <property name="ssoHelper" ref="ssoHelper"/>
+      <bean class="com.firstproject.common.util.sso.SSOInterceptor">
+        <!-- openInterceptor代表是否打开拦截器开关 -->
+        <property name="openInterceptor" value="true"/>
+        <property name="ssoDomain" value=".zzy.com"/>
+        <property name="appDomain" value="www.zzy.com"/>
       </bean>
     </mvc:interceptor>
   </mvc:interceptors>

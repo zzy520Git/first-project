@@ -34,7 +34,7 @@ public class GuavaCacheUtil {
                 /**
                  * 设置过期时间，根据业务需要也可选用expireAfterWrite
                  */
-                .expireAfterAccess(5, TimeUnit.SECONDS)
+                .expireAfterAccess(3*60, TimeUnit.SECONDS)
                 /**
                  * 设置并发级别，并发级别是指可以同时写缓存的线程数
                  */
