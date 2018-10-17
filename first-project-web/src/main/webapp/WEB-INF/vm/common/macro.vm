@@ -1,0 +1,64 @@
+### 分页插件宏
+
+### 注意事项如下：
+## 1.表单隐藏域字段必须为pageNum和pageSize
+## 2.后端分页工具类必须为Page
+## 3.需引入jquery,ui,bootstrap等js和css
+## 4.该宏仅支持vm页面模板，其他可相应模仿
+## 5.表单ID必须为pageForm
+## 6.详情见源码
+
+#macro(showPage $page)
+    #if($!{page.totalCount}>0)
+    <div>
+        <ul class="pagination">
+            #set($pn_1 = $page.pageNum - 1)
+            #set($pn_2 = $page.pageNum - 2)
+            #set($pn1 = $page.pageNum + 1)
+            #set($pn2 = $page.pageNum + 2)
+            <li class="disabled"><a>共$!{page.totalCount}条记录</a></li>
+            <li class="#if($page.pageNum<=1) disabled #else pageBtn #end" pn="1"><a>首页</a></li>
+            <li class="#if($page.pageNum<=1) disabled #else pageBtn #end" pn="$pn_1"><a>上一页</a></li>
+            #if($!{page.pageNum}>3)
+                <li><a href="javascript:void(0)">...</a></li>
+                <li class="pageBtn" pn="$pn_2"><a href="javascript:void(0)">$pn_2</a></li>
+                <li class="pageBtn" pn="$pn_1"><a href="javascript:void(0)">$pn_1</a></li>
+            #elseif($!{page.pageNum}>=2)
+                #if($!{page.pageNum}==3)
+                    <li class="pageBtn" pn="1"><a href="javascript:void(0)">1</a></li>
+                #end
+                <li class="pageBtn" pn="$pn_1"><a href="javascript:void(0)">$pn_1</a></li>
+            #end
+            <li class="active" pn="$!{page.pageNum}"><a href="javascript:void(0)">$!{page.pageNum}</a></li>
+            #if($!{page.pageNum}<$!{page.pageCount})
+                <li class="pageBtn" pn="$pn1"><a href="javascript:void(0)">$pn1</a></li>
+                #if($pn1<$page.pageCount)
+                    <li class="pageBtn" pn="$pn2"><a href="javascript:void(0)">$pn2</a></li>
+                    #if($pn2<$page.pageCount)
+                        <li><a href="javascript:void(0)">...</a></li>
+                    #end
+                #end
+            #end
+            <li class="#if($page.pageNum>=$page.pageCount) disabled #else pageBtn #end" pn="$pn1"><a href="javascript:void(0)">下一页</a></li>
+            <li class="#if($page.pageNum>=$page.pageCount) disabled #else pageBtn #end" pn="$page.pageCount"><a href="javascript:void(0)">末页</a></li>
+            <li>
+                <span style="vertical-align: middle;">
+                共$!{page.pageCount}页,
+                <input id="per_page_count" class="input-sm"
+                       style="display: inline-block;width:42px;height: 18px;text-align: center;padding: 0px"
+                       value="$!{page.pageSize}"/>
+                 条/页,第
+                 <input id="go_page_num" class="input-sm"
+                        style="display: inline-block;width:42px;height: 18px;text-align: center;padding: 0px"
+                        value="$!{page.pageNum}"/>
+                页
+                </span>
+            </li>
+            <li>
+                <a id="go_page" href="javascript:void(0)">跳转</a>
+            </li>
+        </ul>
+    </div>
+    <script type="text/javascript" src="/js/page.js"></script>
+    #end
+#end

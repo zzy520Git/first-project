@@ -20,7 +20,7 @@
   <url>http://www.example.com</url>
 
   <properties>
-    <spring.version>4.3.10.RELEASE</spring.version>
+    <spring.version>4.3.18.RELEASE</spring.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <java.version>1.8</java.version>
     <fasterxml.jackson>2.7.4</fasterxml.jackson>

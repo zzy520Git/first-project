@@ -2,6 +2,11 @@
     <meta http-equiv="Cache-Control" content="no-cache"/>
     <meta charset="utf-8"/>
     <title>javaWeb模板商城</title>
-    <script type="text/javascript" src="/assets/js/jquery-1.10.2.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/assets/css/jquery/jquery-ui.css"/>
+    <script type="text/javascript" src="/assets/js/jquery/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="/assets/js/jquery/jquery.fileupload.js"></script>
+    <script type="text/javascript" src="/assets/js/jquery/jquery-ui.js"></script>
+    <script type="text/javascript" src="/assets/js/bootstrap/bootstrap.min.js"></script>
 </head>
 

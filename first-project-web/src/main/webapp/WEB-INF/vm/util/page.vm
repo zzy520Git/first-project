@@ -1,0 +1,9 @@
+<h1>测试分页工具</h1>
+<form id="pageForm" method="post" action="/page">
+    <input id="pageNum" type="hidden" name="pageNum" value="$!{page.pageNum}">
+    <input id="pageSize" type="hidden" name="pageSize" value="$!{page.pageSize}">
+    <label>姓名：</label><input name="name" value="$!{person.name}"/>
+    <label>年龄：</label><input name="age" value="$!{person.age}"/>
+    <input type="submit" value="提交"/>
+</form>
+#showPage($page)
