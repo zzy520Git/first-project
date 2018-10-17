@@ -23,13 +23,17 @@
     <spring.version>4.3.18.RELEASE</spring.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <java.version>1.8</java.version>
+    <lombok.version>1.16.6</lombok.version>
     <fasterxml.jackson>2.7.4</fasterxml.jackson>
     <slf4j.version>1.7.25</slf4j.version>
     <logback.version>1.2.3</logback.version>
     <log4j.version>1.2.17</log4j.version>
     <commons-lang3.version>3.4</commons-lang3.version>
+    <commons-collections4.version>4.1</commons-collections4.version>
     <commons-lang.version>2.6</commons-lang.version>
     <aspectjweaver.version>1.8.10</aspectjweaver.version>
+    <alibaba.fastjson>1.2.12</alibaba.fastjson>
+    <junit.version>4.12</junit.version>
   </properties>
 
   <dependencies>
@@ -168,14 +172,14 @@
     <dependency>
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-collections4</artifactId>
-      <version>4.1</version>
+      <version>${commons-collections4.version}</version>
     </dependency>
 
     <!-- lombok -->
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
-      <version>1.16.6</version>
+      <version>${lombok.version}</version>
     </dependency>
 
     <!-- 如果用到request、response或session就加上 -->
@@ -190,7 +194,7 @@
     <dependency>
       <groupId>com.alibaba</groupId>
       <artifactId>fastjson</artifactId>
-      <version>1.2.12</version>
+      <version>${alibaba.fastjson}</version>
     </dependency>
     <!-- JSON转换和处理 -->
     <dependency>
@@ -237,7 +241,7 @@
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>4.12</version>
+      <version>${junit.version}</version>
       <scope>test</scope>
     </dependency>
   </dependencies>

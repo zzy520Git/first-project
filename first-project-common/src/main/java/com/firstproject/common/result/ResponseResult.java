@@ -23,6 +23,10 @@ public class ResponseResult<T> {
         this.code = prefix.getCode() + codeNum ;
         return this ;
     }
+    public ResponseResult<T> setCode(ResultPrefixEnum prefix, String codeNum) {
+        this.code = prefix.getCode() + codeNum ;
+        return this ;
+    }
     @Deprecated
     public ResponseResult<T> setCode(String codeStr) {
         this.code = codeStr ;
@@ -65,6 +69,12 @@ public class ResponseResult<T> {
         this(success, prefix) ;
         this.value = value;
     }
+    public ResponseResult(boolean success, ResultPrefixEnum prefix, String code, String desc) {
+        this.code = prefix.getCode() + code ;
+        this.success = success ;
+        this.desc = prefix.getDesc() + desc ;
+    }
+    @Deprecated
     public ResponseResult(boolean success, ResultPrefixEnum prefix, int code, String desc) {
         this.code = prefix.getCode() + code ;
         this.success = success ;
