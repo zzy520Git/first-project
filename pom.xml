@@ -24,7 +24,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <java.version>1.8</java.version>
     <lombok.version>1.16.6</lombok.version>
-    <fasterxml.jackson>2.7.4</fasterxml.jackson>
+    <fasterxml.jackson>2.9.5</fasterxml.jackson>
     <slf4j.version>1.7.25</slf4j.version>
     <logback.version>1.2.3</logback.version>
     <log4j.version>1.2.17</log4j.version>
@@ -248,6 +248,12 @@
       <artifactId>junit</artifactId>
       <version>${junit.version}</version>
       <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>com.jd.yiyao</groupId>
+      <artifactId>yiyao-b2b-common</artifactId>
+      <version>1.0.0-SNAPSHOT</version>
     </dependency>
   </dependencies>
 
