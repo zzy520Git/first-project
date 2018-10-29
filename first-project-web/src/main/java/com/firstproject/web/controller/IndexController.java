@@ -7,6 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * Description：
@@ -20,8 +24,13 @@ public class IndexController {
     private TestService testService ;
 
     @RequestMapping("/index")
-    public String index() {
-        testService.test();
+    public String index(HttpServletRequest request) {
+        //testService.test();
+        String tplPath = request.getSession().getServletContext().getRealPath("/") ;
+        String s = this.getClass().getResource("/").getPath() ;
+        String ss= this.getClass().getClassLoader().getResource("/").getPath() ;
+        HttpServletRequest request1 = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        String sss = request1.getSession().getServletContext().getRealPath("/") ;
         return "index" ;
     }
 

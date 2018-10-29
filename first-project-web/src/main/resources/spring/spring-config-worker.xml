@@ -48,7 +48,7 @@
       </property>
     </bean>
 
-    <!-- spring自带的定时任务，不依赖第三方框架,缺点是不能控制默认不开启 -->
+    <!-- spring自带的定时任务，不依赖第三方框架,缺点是不能控制不开启 -->
     <task:scheduled-tasks scheduler="myScheduler">
       <task:scheduled ref="testWorker" method="doWork3" cron="0/60 * * * * ?"/>
     </task:scheduled-tasks>
