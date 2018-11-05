@@ -28,6 +28,9 @@
         <directory>src/main/resources</directory>
         <!-- filtering属性用来表示资源文件中的占位符是否需要被替换，true为需要替换 -->
         <filtering>true</filtering>
+        <includes>
+          <include>logback.xml</include>
+        </includes>
       </resource>
     </resources>
   </build>
