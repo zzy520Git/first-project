@@ -7,10 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
 
 /**
  * Description：
@@ -42,5 +44,13 @@ public class IndexController {
         System.out.println("totalCount:" + page.getTotalCount());
         System.out.println("pageCount:" + page.getPageCount());
         return "util/page" ;
+    }
+
+    @RequestMapping("/jsonPerson")
+    @ResponseBody
+    public Person jsonPerson() {
+        Person p = new Person();
+        p.setBirthday(new Date());
+        return p;
     }
 }
