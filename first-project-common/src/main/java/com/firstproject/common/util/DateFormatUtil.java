@@ -23,4 +23,8 @@ public class DateFormatUtil {
         return localSimpleDateFormat.get() ;
     }
 
+    public static void remove() {
+        localSimpleDateFormat.remove();
+    }
+
 }

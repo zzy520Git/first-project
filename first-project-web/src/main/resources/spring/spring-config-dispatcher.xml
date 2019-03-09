@@ -3,12 +3,15 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
             http://www.springframework.org/schema/beans/spring-beans.xsd
             http://www.springframework.org/schema/context
             http://www.springframework.org/schema/context/spring-context.xsd
             http://www.springframework.org/schema/mvc
-            http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+            http://www.springframework.org/schema/mvc/spring-mvc.xsd
+            http://www.springframework.org/schema/aop
+            http://www.springframework.org/schema/aop/spring-aop.xsd">
 
   <!--
     该注解驱动的作用：
@@ -16,6 +19,8 @@
     2.默认加载处理器映射器和处理器适配器
   -->
   <mvc:annotation-driven/>
+
+  <aop:aspectj-autoproxy proxy-target-class="true"/>
 
   <!-- 用于支持访问静态资源，因为dispatcher的url映射配置的"/" -->
   <mvc:default-servlet-handler/>
