@@ -1,13 +1,12 @@
 package com.zzy.main;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.locks.LockSupport;
-import java.util.concurrent.locks.ReentrantLock;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.core.io.UrlResource;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
+
+import javax.mail.internet.MimeMessage;
 
 /**
  * Description：
@@ -16,43 +15,41 @@ import java.util.concurrent.locks.ReentrantLock;
  * DATE： 2018/10/19 14:18
  */
 public class TestMain {
-    public static void main(String[] args) throws Exception {
-        System.out.println(System.currentTimeMillis());
-        //运行得线程直接调用直接阻塞
-        LockSupport.unpark(Thread.currentThread());
-        //必须wrap by loop
-        LockSupport.park();
-        System.out.println(System.currentTimeMillis());
-        ThreadPoolExecutor executor ;
-        ReentrantLock lock ;
-        ExecutorService executorService = Executors.newFixedThreadPool(1);
-        executorService = Executors.newCachedThreadPool();
-        LinkedBlockingQueue q ;
-        executorService = Executors.newWorkStealingPool();
-        List<String> s = new ArrayList<>();
-        s.stream();
-        //必须16位以上，且必须8的整数倍
-//        String key = "1hyu349j1leu340j2hgt43og" ;
-//        int count = 0 ;
-//        for(int i=0 ; i<1000 ; i++) {
-//            String content = UUID.randomUUID().toString() ;
-//            String enc = AESCipher.encrypt(content, key) ;
-//            String dec = AESCipher.decrypt(enc, key) ;
-//            if(content.equals(dec)) {
-//                count++ ;
-//            }
-//        }
-//        System.out.println(count);
-//        int count = 0 ;
-//        for(int i=0 ; i<10 ; i++) {
-//            String s = UUID.randomUUID().toString() ;
-//            String abc = Md5Util.encrypt(s) ;
-//            System.out.println(abc);
-//        }
-//        String s = "\\\\aha" ;
-//        System.out.println(s);
-//        System.out.println(s.replaceAll("[\\\\]+", "7"));
 
+    public static void main(String[] args) throws Exception {
+        ApplicationContext ctx = new ClassPathXmlApplicationContext("spring/spring-common.xml");
+        JavaMailSender mailSender = (JavaMailSender)ctx.getBean("mailSender");
+        MimeMessage mime = mailSender.createMimeMessage();
+        MimeMessageHelper helper;
+
+        helper = new MimeMessageHelper(mime,true,"utf-8");
+        helper.setFrom("activitymessage@jd.com");
+        helper.setTo("zhouzhongyi1@jd.com");
+        helper.setSubject("周忠义测试邮件发送");
+        //需要将附件显示在html中
+        //在标签中用cid:xx 标记，使用helper.addInline()方法添加
+        helper.setText("文字");
+        //helper.addInline("logo", new UrlResource("logo.gif"));
+        helper.addAttachment("javaeye.gif", new UrlResource("http://storage.jd.local/yao.jd.bucket/f9587fb2-31b7-4f5b-8a16-c5e81c10b9a1.jpg"));
+        mailSender.send(mime);
+        System.out.println("zz");
+//        TestBean b = new Sub();
+//        b.ff();
     }
 
+}
+
+class TestBean {
+    public void ff() {
+        System.out.println("pa");
+    }
+}
+
+class Sub extends TestBean {
+    @Override
+    public void ff() {
+        super.ff();
+        Object o;
+        System.out.println("sub");
+    }
 }

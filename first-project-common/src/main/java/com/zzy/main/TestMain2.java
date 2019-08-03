@@ -3,11 +3,6 @@ package com.zzy.main;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 /**
  * Description：
  *
@@ -16,18 +11,19 @@ import java.util.stream.Stream;
  */
 public class TestMain2 {
     public static void main(String[] args) {
-        List<Person> pList = Arrays.asList(
-                new Person(1,1996),
-                new Person(2,2393),
-                new Person(3,193),
-                new Person(4,3993),
-                new Person(5,1934),
-                new Person(6,8893)
-        );
-        List<Integer> res = pList.stream()
-                .flatMap(o -> Stream.of(o.getAge(), o.getYear()))
-                .collect(Collectors.toList());
-        System.out.println(Arrays.toString(res.toArray()));
+
+//        List<Person> pList = Arrays.asList(
+//                new Person(1,1996),
+//                new Person(2,2393),
+//                new Person(3,193),
+//                new Person(4,3993),
+//                new Person(5,1934),
+//                new Person(6,8893)
+//        );
+//        List<Integer> res = pList.stream()
+//                .flatMap(o -> Stream.of(o.getAge(), o.getYear()))
+//                .collect(Collectors.toList());
+//        System.out.println(Arrays.toString(res.toArray()));
 
     }
 }

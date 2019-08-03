@@ -7,4 +7,18 @@
   <bean id="dog" class="com.firstproject.common.bean.Dog">
     <constructor-arg value="小白"/>
   </bean>
+  <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+    <property name="host" value="smtp.jd.com"></property>
+    <property name="port" value="25"/>
+    <property name="protocol" value="smtp"/>
+    <property name="username" value="activitymessage"></property>
+    <property name="password" value="yingxiao123"></property>
+    <property name="defaultEncoding" value="UTF-8"/>
+    <!--<property name="javaMailProperties">-->
+      <!--<props>-->
+        <!--<prop key="mail.smtp.auth">true</prop>-->
+        <!--<prop key="mail.smtp.timeout">25000</prop>-->
+      <!--</props>-->
+    <!--</property>-->
+  </bean>
 </beans>
