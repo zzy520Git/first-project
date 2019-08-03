@@ -23,14 +23,14 @@ public class TestMain {
         MimeMessageHelper helper;
 
         helper = new MimeMessageHelper(mime,true,"utf-8");
-        helper.setFrom("activitymessage@jd.com");
-        helper.setTo("zhouzhongyi1@jd.com");
-        helper.setSubject("周忠义测试邮件发送");
+        helper.setFrom("activityme1.com");
+        helper.setTo("zhouzhongy1.com");
+        helper.setSubject("1发送");
         //需要将附件显示在html中
         //在标签中用cid:xx 标记，使用helper.addInline()方法添加
         helper.setText("文字");
         //helper.addInline("logo", new UrlResource("logo.gif"));
-        helper.addAttachment("javaeye.gif", new UrlResource("http://storage.jd.local/yao.jd.bucket/f9587fb2-31b7-4f5b-8a16-c5e81c10b9a1.jpg"));
+        helper.addAttachment("javaeye.gif", new UrlResource("http://storage.d.local/yao.jd.bucket/f9587fb2-31b7-4f5b-8a16-c5e81c10b9a1.jpg"));
         mailSender.send(mime);
         System.out.println("zz");
 //        TestBean b = new Sub();
