@@ -9,6 +9,6 @@
   </bean>
   <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
     <property name="defaultEncoding" value="UTF-8"/>
-
+    <!-- -->
   </bean>
 </beans>

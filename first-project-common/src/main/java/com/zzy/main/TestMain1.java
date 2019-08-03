@@ -6,7 +6,6 @@ import lombok.Setter;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
-import java.util.regex.Pattern;
 
 /**
  * Description：
@@ -16,25 +15,8 @@ import java.util.regex.Pattern;
  */
 public class TestMain1 {
     public static void main(String[] args) {
-        Pattern JDURLREGEXP = Pattern.compile("^((http)|(https)|(openapp\\.jdmedicine))?://([-_\\w]+\\.)+jd\\.com(/.*)?$");
-        Pattern MDURLREGEXP = Pattern.compile("^((http)|(https)|(openapp\\.jdmedicine))?://([-_\\w]+\\.)+jd\\.com(/.*)?$");
-        System.out.println(JDURLREGEXP.matcher("https://pro.m.jd.com/yaojingcai/active/2KTGBpzEcoucQP9q7hgAsaxn8HUY/index.html").matches());
-        //System.out.println("1235234".matches("^[\\u4e00-\\u9fa5a-zA-Z0-9]{2,50}$"));
-//        Long a = 1L;
-//        System.out.println(a + "xx");
-//        final Pattern JDURLREGEXP = Pattern.compile("^((http)|(https)|(openapp\\.jdmedicine))?://([-_\\w]+\\.)+jd\\.com(/.*)?$");
-//        ;
-//        System.out.println(JDURLREGEXP.matcher(
-//                "https://123-___-.m.jd.com/yaojingcai/active/4RVg8JditUSiXFg4roB9RWauDD1W/index.html?env=beta").matches());
-////        String a  =null;
-//        System.out.println(a+"asdbaj");
-//        String str = "{\"code\":\"200\", \"dataList\":[{\"key\":1},{\"key\":1}], data:[{\"status\":\"ON\", \"b\":\"qw\"},{\"status\":\"ON\", \"b\":\"qw\"}]}" ;
-//        Response<List<IssuerVo>> resp = JSONObject.parseObject(str, Response.class);
-//        if(CollectionUtils.isNotEmpty(resp.getData())) {
-//            System.out.println(JSON.toJSONString(resp.getData()));
-//            List<IssuerVo> aa = resp.getData();
-//            List<IssuerVo> rr  = aa.stream().filter(t->t.getStatus().equals("ON")).collect(Collectors.toList());
-//        }
+        //        Long a = 1L;
+
 //        System.out.println(resp);
 //        StringBuilder sb = new StringBuilder("gy.jd.com.");
 //        System.out.println(sb.substring(0, sb.length()-1));
