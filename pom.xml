@@ -32,7 +32,7 @@
     <commons-collections4.version>4.1</commons-collections4.version>
     <commons-lang.version>2.6</commons-lang.version>
     <aspectjweaver.version>1.8.10</aspectjweaver.version>
-    <alibaba.fastjson>1.2.41</alibaba.fastjson>
+    <alibaba.fastjson>1.2.83</alibaba.fastjson>
     <junit.version>4.12</junit.version>
     <hutool.version>4.1.19</hutool.version>
   </properties>
